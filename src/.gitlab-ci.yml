@@ -1,0 +1,22 @@
+image: node:latest
+
+before_script:
+  - echo -e '//frparrffgitlab.corp.capgemini.com:8081/repository/:_authToken=NpmToken.e4b9a242-c87e-38b9-9561-480d2cd6ffd1\n@soclejs:registry=http://frparrffgitlab.corp.capgemini.com:8081/repository/npm-private'>~/.npmrc
+  - cat ~/.npmrc
+  - npm install
+
+stages:
+  - build
+  - test
+
+cache:
+  paths:
+    - node_modules/
+
+build:
+  script:
+    - ng build
+
+tests:
+  script:
+    - ./node_modules/@angular/cli/bin/ng test --single-run=true --browsers PhantomJS --watch=false
