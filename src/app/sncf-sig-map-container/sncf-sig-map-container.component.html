@@ -1,0 +1,16 @@
+<div class="map-container">
+  <split direction="horizontal" [gutterSize]="container.gutterSize" [width]="container.width" [height]="container.height" useTransition="true"
+    style="background-color: #ffffff;">
+    <ng-template ngFor let-mapRow [ngForOf]="mapRows" let-index="index">
+      <split-area size="mapRow.size" >
+        <split direction="vertical" [gutterSize]="container.gutterSize">
+          <ng-template ngFor let-mapCell [ngForOf]="mapRow" let-index="index">
+            <split-area *ngIf="mapCell.present" [visible]="mapCell.visible" [order]="index" [size]="mapCell.size">
+              <sncf-sig-map [mapProperties]="mapCell.mapProps" [mapViewProperties]="mapCell.viewProps" on></sncf-sig-map>
+            </split-area>
+          </ng-template>
+        </split>
+      </split-area>
+    </ng-template>
+  </split>
+</div>
