@@ -15,7 +15,7 @@ cache:
 
 build:
   script:
-    - ng build
+    - ./node_modules/@angular/cli/bin/ng build
 
 tests:
   script:
