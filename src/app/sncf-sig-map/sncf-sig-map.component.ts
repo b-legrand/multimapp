@@ -5,6 +5,9 @@ import { Logger } from "typescript-logger/build/logger";
 import { Log } from "typescript-logger/build/log";
 import { ViewChild } from "@angular/core";
 
+/**
+ * Composant chargé d'afficher une map esri.
+ */
 @Component({
   selector: "sncf-sig-map",
   styleUrls: ["./sncf-sig-map.component.css"],

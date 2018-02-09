@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Input } from "@angular/core";
 
 @Component({
   selector: "sncf-sig-header",
@@ -6,6 +7,8 @@ import { Component, OnInit } from "@angular/core";
   templateUrl: "./sncf-sig-header.component.html"
 })
 export class SncfSigHeaderComponent implements OnInit {
+
+  @Input() public title: string;
 
   constructor() { }
 

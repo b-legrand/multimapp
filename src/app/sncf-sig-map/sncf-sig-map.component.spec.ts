@@ -22,4 +22,17 @@ describe("SncfSigMapComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+  it("should create and load esri map", () => {
+    expect(component).toBeTruthy();
+    component.mapProperties = {
+      basemap: "street"
+    };
+    component.mapViewProperties = {
+
+    };
+    fixture.detectChanges();
+
+    expect(component).toBeTruthy();
+  });
 });
