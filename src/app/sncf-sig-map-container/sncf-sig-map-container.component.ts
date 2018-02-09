@@ -1,8 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { Log, Level } from "typescript-logger";
+import { Component, OnInit, Output } from "@angular/core";
 import { Logger } from "typescript-logger/build/logger";
+import { Log } from "typescript-logger/build/log";
 import * as Chance from "chance";
-import { Output } from "@angular/core";
 
 export const basemaps: string[] = [
   "streets",
@@ -44,6 +43,9 @@ export interface IMapCell {
   };
 }
 
+/**
+ * Composant conteneur de maps, dans des splitters
+ */
 @Component({
   selector: "sncf-sig-map-container",
   styleUrls: ["./sncf-sig-map-container.component.css"],
@@ -79,7 +81,7 @@ export class SncfSigMapContainerComponent implements OnInit {
   }
 
   public handleMapLoaded(mapInfo: any): void {
-    console.log("map loaded : ");
+    this.logger.debug("map loaded", mapInfo);
     return;
   }
 

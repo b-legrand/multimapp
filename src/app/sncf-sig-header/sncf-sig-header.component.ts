@@ -9,8 +9,6 @@ export class SncfSigHeaderComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    
-  }
+  public ngOnInit() { }
 
 }

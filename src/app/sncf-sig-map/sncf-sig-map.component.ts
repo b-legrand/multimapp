@@ -39,14 +39,21 @@ export class SncfSigMapComponent implements OnInit, OnChanges {
   private map: __esri.Map;
   private mapView: __esri.MapView;
 
-  public handleMapInit(mapInfo: {
-    map: __esri.Map;
-    mapView: __esri.MapView;
-  }): void {
-    this.map = mapInfo.map;
-    this.mapView = mapInfo.mapView;
+  /**
+   * remonte un callback map loaded aux parents
+   */
+  public handleMapLoaded(): void {
+    this.onMapLoaded(
+      {
+        map: this.map,
+        mapView: this.mapView
+      }
+    );
   }
 
+  /**
+   * Charge les composants esri.
+   */
   public ngOnInit(): void {
     const loaderOptions = {
       url: "//js.arcgis.com/4.6"
@@ -72,6 +79,7 @@ export class SncfSigMapComponent implements OnInit, OnChanges {
           this.logger.debug("map resized callback");
         });
 
+        this.handleMapLoaded();
       })
       .catch(error => {
         this.logger.error(error);
@@ -85,5 +93,6 @@ export class SncfSigMapComponent implements OnInit, OnChanges {
     if (!changes.mapViewProperties || !changes.mapProperties) {
       return;
     }
+    // todo rafraichir les conf de Map depuis composant parent.
   }
 }
