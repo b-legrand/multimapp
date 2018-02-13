@@ -80,8 +80,8 @@ export class SncfSigMapContainerComponent implements OnInit {
     }
   }
 
-  public handleMapLoaded(mapInfo: any): void {
-    this.logger.debug("map loaded", mapInfo);
+  public handleMapLoaded(event: any): void {
+    this.logger.debug("map loaded", event.mapInfo);
     return;
   }
 

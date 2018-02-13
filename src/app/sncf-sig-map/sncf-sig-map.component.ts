@@ -1,12 +1,18 @@
 import { Component, OnInit, OnChanges, Input, Output } from "@angular/core";
-import { ElementRef } from "@angular/core";
+import { ElementRef, EventEmitter, ViewChild } from "@angular/core";
 import * as esriLoader from "esri-loader";
 import { Logger } from "typescript-logger/build/logger";
 import { Log } from "typescript-logger/build/log";
-import { ViewChild } from "@angular/core";
-
+export enum MapEventType {
+  MAP_LOADED,
+}
+export type MapEvent = { 
+  map: __esri.Map;
+  mapView?: __esri.MapView;
+  type?: MapEventType
+};
 /**
- * Composant chargé d'afficher une map esri.
+ * composant chargé d'afficher une map esri.
  */
 @Component({
   selector: "sncf-sig-map",
@@ -35,9 +41,7 @@ export class SncfSigMapComponent implements OnInit, OnChanges {
   public mapViewProperties: __esri.MapViewProperties;
 
   @Output()
-  public onMapLoaded: (
-    mapInfo: { map: __esri.Map; mapView: __esri.MapView }
-  ) => void;
+  public mapLoaded: EventEmitter<MapEvent> = new EventEmitter<MapEvent>();
 
   private map: __esri.Map;
   private mapView: __esri.MapView;
@@ -46,10 +50,11 @@ export class SncfSigMapComponent implements OnInit, OnChanges {
    * remonte un callback map loaded aux parents
    */
   public handleMapLoaded(): void {
-    this.onMapLoaded(
+    this.mapLoaded.emit(
       {
         map: this.map,
-        mapView: this.mapView
+        mapView: this.mapView,
+        type: MapEventType.MAP_LOADED
       }
     );
   }
