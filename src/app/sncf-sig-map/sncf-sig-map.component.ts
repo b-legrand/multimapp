@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, Output } from "@angular/core";
+import { Component, OnInit, OnChanges, Input, Output, AfterViewInit } from "@angular/core";
 import { ElementRef, EventEmitter, ViewChild } from "@angular/core";
 import * as esriLoader from "esri-loader";
 import { Logger } from "typescript-logger/build/logger";
@@ -19,7 +19,7 @@ export type MapEvent = {
   styleUrls: ["./sncf-sig-map.component.css"],
   templateUrl: "./sncf-sig-map.component.html"
 })
-export class SncfSigMapComponent implements OnInit, OnChanges {
+export class SncfSigMapComponent implements OnInit, OnChanges, AfterViewInit {
   /**
    *  Logger du composant
    */
@@ -59,12 +59,9 @@ export class SncfSigMapComponent implements OnInit, OnChanges {
     );
   }
 
-  /**
-   * Charge les composants esri.
-   */
-  public ngOnInit(): void {
+  ngAfterViewInit(): void {
     const loaderOptions = {
-      url: "//js.arcgis.com/4.6"
+      url: "//js.arcgis.com/4.11"
     };
     esriLoader
       .loadModules(["esri/Map", "esri/views/MapView"], loaderOptions)
@@ -92,6 +89,11 @@ export class SncfSigMapComponent implements OnInit, OnChanges {
       .catch(error => {
         this.logger.error(error);
       });
+  }
+  /**
+   * Charge les composants esri.
+   */
+  public ngOnInit(): void {
   }
 
   public ngOnChanges(changes: any): void {
