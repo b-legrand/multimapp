@@ -28,7 +28,7 @@ export class SncfSigMapComponent implements OnInit, OnChanges, AfterViewInit {
   /**
    * Element du dom dans lequel mettre la map
    */
-  @ViewChild("mapRef", { read: ElementRef })
+  @ViewChild("mapRef", { read: ElementRef, static: true })
   public mapEl: ElementRef;
 
   /**
