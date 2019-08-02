@@ -1,21 +1,21 @@
-import { Component, OnInit, Output } from "@angular/core";
-import { Logger } from "typescript-logger/build/logger";
-import { Log } from "typescript-logger/build/log";
-import * as Chance from "chance";
+import { Component, OnInit, Output } from '@angular/core';
+import { Logger } from 'typescript-logger/build/logger';
+import { Log } from 'typescript-logger/build/log';
+import * as Chance from 'chance';
 
 export const basemaps: string[] = [
-  "streets",
-  "satellite",
-  "hybrid",
-  "topo",
-  "gray",
-  "dark-gray",
-  "terrain",
-  "osm",
-  "dark-gray-vector",
-  "gray-vector",
-  "streets-vector",
-  "topo-vector",
+  'streets',
+  'satellite',
+  'hybrid',
+  'topo',
+  'gray',
+  'dark-gray',
+  'terrain',
+  'osm',
+  'dark-gray-vector',
+  'gray-vector',
+  'streets-vector',
+  'topo-vector',
 ];
 /**
  * Options globale d'un conteneur de plusieurs split.
@@ -48,17 +48,17 @@ export interface IMapCell {
  */
 @Component({
   selector: "sncf-sig-map-container",
-  styleUrls: ["./sncf-sig-map-container.component.css"],
-  templateUrl: "./sncf-sig-map-container.component.html"
+  styleUrls: ['./sncf-sig-map-container.component.css'],
+  templateUrl: './sncf-sig-map-container.component.html'
 })
 export class SncfSigMapContainerComponent implements OnInit {
 
-  private logger: Logger<{}> = Log.create("Sncf:Sig:Map:Container");
+  private logger: Logger<{}> = Log.create('Sncf:Sig:Map:Container');
 
   private chance: Chance.Chance;
 
   public container: any = {
-    gutterSize: "7",
+    gutterSize: '7',
     height: window.innerHeight,
     width: window.innerWidth,
   };
@@ -69,7 +69,7 @@ export class SncfSigMapContainerComponent implements OnInit {
   ];
 
   public ngOnInit(): void {
-    this.logger.debug("init maps");
+    this.logger.debug('init maps');
     // 1ère colonne, 3 cellules, à 33%
     for (const i of [1, 2, 3]) {
       this.mapRows[0].push( this.createRandomMap(33.33) );
@@ -81,7 +81,7 @@ export class SncfSigMapContainerComponent implements OnInit {
   }
 
   public handleMapLoaded(event: any): void {
-    this.logger.debug("map loaded", event.mapInfo);
+    this.logger.debug('map loaded', event.mapInfo);
     return;
   }
 

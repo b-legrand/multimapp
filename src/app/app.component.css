@@ -5,3 +5,10 @@ body {
   height: vh;
   width: vw;
 }
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-items: stretch;
+  height: 100%;
+}

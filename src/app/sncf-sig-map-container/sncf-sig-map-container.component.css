@@ -1,4 +1,8 @@
-.map-container{
-    padding: 7px;
-    background-color: rgb(238, 238, 238);
+.map-container {
+  padding: 7px;
+  background-color: rgb(238, 238, 238);
+  height: 100%;
+}
+:host {
+  flex: 1 1 auto;
 }
