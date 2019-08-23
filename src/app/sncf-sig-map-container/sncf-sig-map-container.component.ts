@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Logger } from 'typescript-logger/build/logger';
 import { Log } from 'typescript-logger/build/log';
-import * as Chance from 'chance';
+import * as faker from 'faker';
 
 export const basemaps: string[] = [
   'streets',
@@ -47,7 +47,7 @@ export interface IMapCell {
  * Composant conteneur de maps, dans des splitters
  */
 @Component({
-  selector: "sncf-sig-map-container",
+  selector: 'sncf-sig-map-container',
   styleUrls: ['./sncf-sig-map-container.component.css'],
   templateUrl: './sncf-sig-map-container.component.html'
 })
@@ -70,11 +70,11 @@ export class SncfSigMapContainerComponent implements OnInit {
     this.logger.debug('init maps');
     // 1ère colonne, 3 cellules, à 33%
     for (const i of [1, 2, 3]) {
-      this.mapRows[0].push( this.createRandomMap(33.33) );
+      this.mapRows[0].push( this.createRandomMap(33.33, Math.random() * 100) );
     }
     // 2e colonne, 2 cellules à 50% de hauteur.
     for (const i of [1, 2]) {
-      this.mapRows[1].push( this.createRandomMap(50) );
+      this.mapRows[1].push( this.createRandomMap(50, Math.random() * 100) );
     }
   }
 
@@ -83,20 +83,22 @@ export class SncfSigMapContainerComponent implements OnInit {
     return;
   }
 
-  public createRandomMap(size: number): IMapCell {
+  public createRandomMap(size: number, seed: number = 42): IMapCell {
     // random number generator.
-    const chance = new Chance.Chance();
-
+    faker.seed(seed);
     return {
-      id: chance.guid(),
+      id: faker.random.uuid(),
       mapProps: {
-        basemap: chance.pickone(basemaps),
+        basemap: faker.helpers.randomize(basemaps),
       },
       present: true,
       size,
       viewProps: {
-        center: [chance.latitude(), chance.longitude()],
-        zoom: chance.integer({ min: 1, max: 12 })
+        center: [
+          parseInt(faker.address.latitude(), 10),
+          parseInt(faker.address.longitude(), 10)
+        ],
+        zoom: faker.random.number({ min: 1, max: 12 })
       },
       visible: true,
     } as IMapCell;
