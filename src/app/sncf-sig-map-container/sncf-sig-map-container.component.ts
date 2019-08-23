@@ -90,7 +90,7 @@ export class SncfSigMapContainerComponent implements OnInit {
     return {
       id: chance.guid(),
       mapProps: {
-        basemap: chance.pick(basemaps),
+        basemap: chance.pickone(basemaps),
       },
       present: true,
       size,
