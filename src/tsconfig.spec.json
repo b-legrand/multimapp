@@ -7,10 +7,10 @@
       "jasmine",
       "node",
       "arcgis-js-api"
-    ]
+    ],
+    "module": "commonjs"
   },
   "files": [
-    "test.ts",
     "polyfills.ts"
   ],
   "include": [
