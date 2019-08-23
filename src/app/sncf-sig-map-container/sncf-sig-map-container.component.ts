@@ -55,8 +55,6 @@ export class SncfSigMapContainerComponent implements OnInit {
 
   private logger: Logger<{}> = Log.create('Sncf:Sig:Map:Container');
 
-  private chance: Chance.Chance;
-
   public container: any = {
     gutterSize: '7',
     height: window.innerHeight,
@@ -87,7 +85,7 @@ export class SncfSigMapContainerComponent implements OnInit {
 
   public createRandomMap(size: number): IMapCell {
     // random number generator.
-    const chance = new Chance();
+    const chance = new Chance.Chance();
 
     return {
       id: chance.guid(),
