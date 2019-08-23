@@ -20,7 +20,7 @@ cache:
 
 script:
   - ng test --runInBand --collectCoverage
-  - ng build --prod --base-href=multimapp/
+  - ng build --prod --base-href=/multimapp/
 
 deploy:
   local_dir: dist/
