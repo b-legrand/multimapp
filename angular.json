@@ -73,12 +73,6 @@
             "browserTarget": "application-multimap:build"
           }
         },
-        "test": {
-          "builder": "@angular-builders/jest:run",
-          "options": {
-            "no-cache": true
-          }
-        },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
