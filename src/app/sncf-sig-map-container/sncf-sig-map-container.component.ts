@@ -10,18 +10,18 @@ import {
 } from "@ngneat/falso";
 
 export const basemaps: string[] = [
-  "streets",
   "satellite",
   "hybrid",
-  "topo",
-  "gray",
-  "dark-gray",
   "terrain",
+  "oceans",
   "osm",
   "dark-gray-vector",
   "gray-vector",
   "streets-vector",
   "topo-vector",
+  "streets-night-vector",
+  "streets-relief-vector",
+  "streets-navigation-vector",
 ];
 /**
  * Options globale d'un conteneur de plusieurs split.

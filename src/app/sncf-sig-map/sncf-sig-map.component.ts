@@ -60,7 +60,7 @@ export class SncfSigMapComponent implements OnInit, OnChanges, AfterViewInit {
 
   ngAfterViewInit(): void {
     const loaderOptions = {
-      url: "//js.arcgis.com/4.11"
+      url: "//js.arcgis.com/4.25"
     };
     esriLoader
       .loadModules(["esri/Map", "esri/views/MapView"], loaderOptions)
