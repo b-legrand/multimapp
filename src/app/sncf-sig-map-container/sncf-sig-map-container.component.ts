@@ -8,6 +8,9 @@ import {
   randUuid,
   seed,
 } from "@ngneat/falso";
+import { AngularSplitModule } from "angular-split";
+import { SncfSigMapComponent } from "../sncf-sig-map/sncf-sig-map.component";
+import { NgForOf, NgIf } from "@angular/common";
 
 export const basemaps: string[] = [
   "satellite",
@@ -56,6 +59,8 @@ export interface IMapCell {
   selector: "sncf-sig-map-container",
   styleUrls: ["./sncf-sig-map-container.component.css"],
   templateUrl: "./sncf-sig-map-container.component.html",
+  standalone: true,
+  imports: [NgForOf,NgIf, AngularSplitModule, SncfSigMapComponent]
 })
 export class SncfSigMapContainerComponent implements OnInit {
   private logger: Logger = LoggerManager.create("Sncf:Sig:Map:Container");

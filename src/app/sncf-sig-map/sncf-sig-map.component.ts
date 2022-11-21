@@ -16,7 +16,9 @@ export type MapEvent = {
 @Component({
   selector: "sncf-sig-map",
   styleUrls: ["./sncf-sig-map.component.css"],
-  templateUrl: "./sncf-sig-map.component.html"
+  templateUrl: "./sncf-sig-map.component.html",
+  standalone: true,
+  imports: []
 })
 export class SncfSigMapComponent implements OnInit, OnChanges, AfterViewInit {
   /**
