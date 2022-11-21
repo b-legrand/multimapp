@@ -1,21 +1,28 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { Logger } from 'typescript-logger/build/logger';
-import { Log } from 'typescript-logger/build/log';
-import * as Chance from 'chance';
+import { Component, OnInit, Output } from "@angular/core";
+import { Logger } from "typescript-logger/build/logger";
+import { Log } from "typescript-logger/build/log";
+import {
+  rand,
+  randLatitude,
+  randLongitude,
+  randNumber,
+  randUuid,
+  seed,
+} from "@ngneat/falso";
 
 export const basemaps: string[] = [
-  'streets',
-  'satellite',
-  'hybrid',
-  'topo',
-  'gray',
-  'dark-gray',
-  'terrain',
-  'osm',
-  'dark-gray-vector',
-  'gray-vector',
-  'streets-vector',
-  'topo-vector',
+  "streets",
+  "satellite",
+  "hybrid",
+  "topo",
+  "gray",
+  "dark-gray",
+  "terrain",
+  "osm",
+  "dark-gray-vector",
+  "gray-vector",
+  "streets-vector",
+  "topo-vector",
 ];
 /**
  * Options globale d'un conteneur de plusieurs split.
@@ -39,7 +46,7 @@ export interface IMapCell {
   };
   viewProps?: {
     zoom: number;
-    center: number[]
+    center: number[];
   };
 }
 
@@ -48,55 +55,50 @@ export interface IMapCell {
  */
 @Component({
   selector: "sncf-sig-map-container",
-  styleUrls: ['./sncf-sig-map-container.component.css'],
-  templateUrl: './sncf-sig-map-container.component.html'
+  styleUrls: ["./sncf-sig-map-container.component.css"],
+  templateUrl: "./sncf-sig-map-container.component.html",
 })
 export class SncfSigMapContainerComponent implements OnInit {
-
-  private logger: Logger<{}> = Log.create('Sncf:Sig:Map:Container');
+  private logger: Logger<{}> = Log.create("Sncf:Sig:Map:Container");
 
   public container: any = {
-    gutterSize: '7',
+    gutterSize: "7",
     height: window.innerHeight,
     width: window.innerWidth,
   };
 
-  public mapRows: IMapCell[][] = [
-    [ ],
-    [ ]
-  ];
+  public mapRows: IMapCell[][] = [[], []];
 
   public ngOnInit(): void {
-    this.logger.debug('init maps');
+    this.logger.debug("init maps");
     // 1ère colonne, 3 cellules, à 33%
     for (const i of [1, 2, 3]) {
-      this.mapRows[0].push( this.createRandomMap(33.33) );
+      this.mapRows[0].push(this.createRandomMap(33.33, Math.random() * 100));
     }
     // 2e colonne, 2 cellules à 50% de hauteur.
     for (const i of [1, 2]) {
-      this.mapRows[1].push( this.createRandomMap(50) );
+      this.mapRows[1].push(this.createRandomMap(50, Math.random() * 100));
     }
   }
 
   public handleMapLoaded(event: any): void {
-    this.logger.debug('map loaded', event.mapInfo);
+    this.logger.debug("map loaded", event.mapInfo);
     return;
   }
 
-  public createRandomMap(size: number): IMapCell {
+  public createRandomMap(size: number, seedValue: number = 42): IMapCell {
     // random number generator.
-    const chance = new Chance.Chance();
-
+    seed(`${seedValue}`);
     return {
-      id: chance.guid(),
+      id: randUuid(),
       mapProps: {
-        basemap: chance.pickone(basemaps),
+        basemap: rand(basemaps),
       },
       present: true,
       size,
       viewProps: {
-        center: [chance.latitude(), chance.longitude()],
-        zoom: chance.integer({ min: 1, max: 12 })
+        center: [randLatitude(), randLongitude()],
+        zoom: randNumber({ min: 1, max: 12 }),
       },
       visible: true,
     } as IMapCell;
