@@ -10,7 +10,6 @@ const esModules = [
   "@angular",
   "angular-split",
   "typescript-logger",
-  "ng-bootstrap",
   "@ngneat/falso",
 ].join("|");
 
