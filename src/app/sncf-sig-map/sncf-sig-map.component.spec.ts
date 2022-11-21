@@ -6,13 +6,6 @@ describe("SncfSigMapComponent", () => {
   let component: SncfSigMapComponent;
   let fixture: ComponentFixture<SncfSigMapComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ SncfSigMapComponent ]
-    })
-    .compileComponents();
-  });
-
   beforeEach(() => {
     fixture = TestBed.createComponent(SncfSigMapComponent);
     component = fixture.componentInstance;

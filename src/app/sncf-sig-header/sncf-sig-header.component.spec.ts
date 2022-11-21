@@ -6,13 +6,6 @@ describe("SncfSigHeaderComponent", () => {
   let component: SncfSigHeaderComponent;
   let fixture: ComponentFixture<SncfSigHeaderComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ SncfSigHeaderComponent ]
-    })
-    .compileComponents();
-  });
-
   beforeEach(() => {
     fixture = TestBed.createComponent(SncfSigHeaderComponent);
     component = fixture.componentInstance;
