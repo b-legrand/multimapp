@@ -30,7 +30,7 @@
     "rxjs": "^6.6.7",
     "rxjs-compat": "^6.0.0-rc.0",
     "tslib": "^2.0.0",
-    "typescript-logger": "^1.1.1",
+    "typescript-logger": "^5.0.1",
     "uuid": "^3.3.2",
     "zone.js": "~0.11.4"
   },

@@ -1,6 +1,5 @@
 import { Component, OnInit, Output } from "@angular/core";
-import { Logger } from "typescript-logger/build/logger";
-import { Log } from "typescript-logger/build/log";
+import { Logger, LoggerManager } from "typescript-logger";
 import {
   rand,
   randLatitude,
@@ -59,7 +58,7 @@ export interface IMapCell {
   templateUrl: "./sncf-sig-map-container.component.html",
 })
 export class SncfSigMapContainerComponent implements OnInit {
-  private logger: Logger<{}> = Log.create("Sncf:Sig:Map:Container");
+  private logger: Logger = LoggerManager.create("Sncf:Sig:Map:Container");
 
   public container: any = {
     gutterSize: "7",

@@ -1,12 +1,11 @@
 import { Component, OnInit, OnChanges, Input, Output, AfterViewInit } from "@angular/core";
 import { ElementRef, EventEmitter, ViewChild } from "@angular/core";
 import * as esriLoader from "esri-loader";
-import { Logger } from "typescript-logger/build/logger";
-import { Log } from "typescript-logger/build/log";
+import { Logger, LoggerManager } from "typescript-logger";
 export enum MapEventType {
   MAP_LOADED,
 }
-export type MapEvent = { 
+export type MapEvent = {
   map: __esri.Map;
   mapView?: __esri.MapView;
   type?: MapEventType
@@ -23,7 +22,7 @@ export class SncfSigMapComponent implements OnInit, OnChanges, AfterViewInit {
   /**
    *  Logger du composant
    */
-   private logger: Logger<{}> = Log.create("SigMapComponent");
+   private logger: Logger = LoggerManager.create("SigMapComponent");
 
   /**
    * Element du dom dans lequel mettre la map
