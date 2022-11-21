@@ -10,13 +10,14 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "target": "es2020",
+    "target": "ES2022",
     "lib": [
       "es2017",
       "dom"
     ],
     "module": "es2020",
     "baseUrl": "./",
-    "paths": {}
+    "paths": {},
+    "useDefineForClassFields": false
   }
 }

@@ -16,7 +16,10 @@
             "main": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
-            "assets": ["src/assets", "src/favicon.ico"],
+            "assets": [
+              "src/assets",
+              "src/favicon.ico"
+            ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
@@ -28,7 +31,10 @@
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true,
-            "allowedCommonJsDependencies": ["seedrandom", "esri-loader"]
+            "allowedCommonJsDependencies": [
+              "seedrandom",
+              "esri-loader"
+            ]
           },
           "configurations": {
             "production": {
@@ -75,7 +81,10 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
@@ -102,9 +111,17 @@
     },
     "@schematics/angular:directive": {
       "prefix": "app"
+    },
+    "@angular-eslint/schematics:application": {
+      "setParserOptionsProject": true
+    },
+    "@angular-eslint/schematics:library": {
+      "setParserOptionsProject": true
     }
   },
   "cli": {
-    "schematicCollections": ["@angular-eslint/schematics"]
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
