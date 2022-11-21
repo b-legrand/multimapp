@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { AngularSplitModule } from "angular-split";
 import { NO_ERRORS_SCHEMA, Component, EventEmitter, Input, Output } from "@angular/core";
 
@@ -24,13 +24,13 @@ describe("SncfSigMapContainerComponent", () => {
   let fixture: ComponentFixture<SncfSigMapContainerComponent>;
 
   beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
+    async () => {
+      await TestBed.configureTestingModule({
         imports: [AngularSplitModule],
         declarations: [SncfSigMapContainerComponent, MockSncfSigMapComponent],
         providers: [],
       }).compileComponents();
-    })
+    }
   );
 
   beforeEach(() => {
