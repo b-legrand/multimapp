@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
-import { Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "sncf-sig-header",
@@ -9,12 +8,10 @@ import { Input } from "@angular/core";
   standalone: true,
   imports: [CommonModule]
 })
-export class SncfSigHeaderComponent implements OnInit {
+export class SncfSigHeaderComponent {
 
-  @Input() public title: string;
+  @Input() public title!: string;
 
   constructor() { }
-
-  public ngOnInit() { }
 
 }

@@ -42,7 +42,7 @@ export interface IMapCell {
   id: string;
   present: boolean;
   visible: boolean;
-  size?: string | number;
+  size?: number;
   mapProps?: {
     basemap?: string | __esri.Basemap;
   };

@@ -16,13 +16,13 @@ import { SncfSigMapComponent } from "../sncf-sig-map/sncf-sig-map.component";
 })
 class MockSncfSigMapComponent {
   @Input()
-  public mapProperties: __esri.MapProperties;
+  public mapProperties!: __esri.MapProperties;
 
   @Input()
-  public mapViewProperties: __esri.MapViewProperties;
+  public mapViewProperties!: __esri.MapViewProperties;
 
   @Output()
-  public onMapLoaded: EventEmitter<any> = new EventEmitter<any>();
+  public mapLoaded: EventEmitter<any> = new EventEmitter<any>();
 }
 
 describe("SncfSigMapContainerComponent", () => {

@@ -3,13 +3,13 @@
          [gutterSize]="container.gutterSize"
          [style.width]="container.width"
          [style.height]="container.height"
-         useTransition="true"
+         [useTransition]="true"
          style="background-color: #ffffff;">
     <ng-template ngFor
                  let-mapRow
                  [ngForOf]="mapRows"
                  let-index="index">
-      <as-split-area [size]="mapRow.size">
+      <as-split-area [size]="mapRow.length">
         <as-split direction="vertical"
                [gutterSize]="container.gutterSize">
           <ng-template ngFor
@@ -19,7 +19,7 @@
             <as-split-area *ngIf="mapCell.present"
                         [visible]="mapCell.visible"
                         [order]="index"
-                        [size]="mapCell.size">
+                        [size]="mapCell?.size || 1">
               <sncf-sig-map [mapProperties]="mapCell.mapProps"
                             [mapViewProperties]="mapCell.viewProps"
                             (mapLoaded)="handleMapLoaded($event)"></sncf-sig-map>

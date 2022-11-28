@@ -1,7 +1,7 @@
 import type { Config } from "jest";
 
 // eslint-disable-next-line no-undef
-globalThis.ngJest = {
+(globalThis as any).ngJest = {
   skipNgcc: false,
   tsconfig: "tsconfig.spec.json",
 };
@@ -10,7 +10,6 @@ const esModules = [
   "@angular",
   "angular-split",
   "typescript-logger",
-  "@ng-bootstrap/ng-bootstrap",
   "@ngneat/falso",
 ].join("|");
 

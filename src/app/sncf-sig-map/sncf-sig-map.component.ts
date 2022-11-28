@@ -1,5 +1,14 @@
-import { Component, OnInit, OnChanges, Input, Output, AfterViewInit } from "@angular/core";
-import { ElementRef, EventEmitter, ViewChild } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  Input,
+  Output,
+  AfterViewInit,
+  ElementRef,
+  EventEmitter,
+  ViewChild,
+} from "@angular/core";
 import * as esriLoader from "esri-loader";
 import { Logger, LoggerManager } from "typescript-logger";
 export enum MapEventType {
@@ -8,7 +17,7 @@ export enum MapEventType {
 export type MapEvent = {
   map: __esri.Map;
   mapView?: __esri.MapView;
-  type?: MapEventType
+  type?: MapEventType;
 };
 /**
  * composant chargé d'afficher une map esri.
@@ -18,56 +27,53 @@ export type MapEvent = {
   styleUrls: ["./sncf-sig-map.component.css"],
   templateUrl: "./sncf-sig-map.component.html",
   standalone: true,
-  imports: []
+  imports: [],
 })
-export class SncfSigMapComponent implements OnInit, OnChanges, AfterViewInit {
+export class SncfSigMapComponent implements OnChanges, AfterViewInit {
   /**
    *  Logger du composant
    */
-   private logger: Logger = LoggerManager.create("SigMapComponent");
+  private logger: Logger = LoggerManager.create("SigMapComponent");
 
   /**
    * Element du dom dans lequel mettre la map
    */
   @ViewChild("mapRef", { read: ElementRef, static: true })
-  public mapEl: ElementRef;
+  public mapEl!: ElementRef;
 
   /**
    * Propriétés de la Map esri.
    */
   @Input()
-  public mapProperties: __esri.MapProperties;
+  public mapProperties?: __esri.MapProperties;
 
   @Input()
-  public mapViewProperties: __esri.MapViewProperties;
+  public mapViewProperties?: __esri.MapViewProperties;
 
   @Output()
   public mapLoaded: EventEmitter<MapEvent> = new EventEmitter<MapEvent>();
 
-  private map: __esri.Map;
-  private mapView: __esri.MapView;
+  private map!: __esri.Map;
+  private mapView!: __esri.MapView;
 
   /**
    * remonte un callback map loaded aux parents
    */
   public handleMapLoaded(): void {
-    this.mapLoaded.emit(
-      {
-        map: this.map,
-        mapView: this.mapView,
-        type: MapEventType.MAP_LOADED
-      }
-    );
+    this.mapLoaded.emit({
+      map: this.map,
+      mapView: this.mapView,
+      type: MapEventType.MAP_LOADED,
+    });
   }
 
   ngAfterViewInit(): void {
     const loaderOptions = {
-      url: "//js.arcgis.com/4.25"
+      url: "//js.arcgis.com/4.25",
     };
     esriLoader
       .loadModules(["esri/Map", "esri/views/MapView"], loaderOptions)
       .then(([Map, MapView]) => {
-
         this.map = new Map(this.mapProperties);
 
         this.mapView = new MapView({
@@ -87,14 +93,9 @@ export class SncfSigMapComponent implements OnInit, OnChanges, AfterViewInit {
 
         this.handleMapLoaded();
       })
-      .catch(error => {
+      .catch((error) => {
         this.logger.error(error);
       });
-  }
-  /**
-   * Charge les composants esri.
-   */
-  public ngOnInit(): void {
   }
 
   public ngOnChanges(changes: any): void {
